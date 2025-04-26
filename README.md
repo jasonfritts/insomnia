@@ -22,12 +22,12 @@ A set of Insomnia collections for testing Azure Identity protocols.
    ![image](https://github.com/user-attachments/assets/80a2162c-8bbe-44fe-9ed0-be973ea4f67f)
 
 
-2. From the Import option, select the **Url** option and then copy and paste one of the following available example collections
+2. From the Import option, select the **Url** option and then copy and paste one of the following available example collections:
 
-   **Azure AD B2C Protocol Fundamentals** : `https://raw.githubusercontent.com/jasonfritts/insomnia/refs/heads/main/B2C%20Protocols%20Demo.yaml`
+   | Example Name | URL |
+   | --- | --- |
+   | **Azure AD B2C Protocol Fundamentals** | ```https://raw.githubusercontent.com/jasonfritts/insomnia/refs/heads/main/B2C%20Protocols%20Demo.yaml``` |
 
-
-  
 
 
 4. After pasting the example you wish to test, choose **Scan** button
