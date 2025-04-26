@@ -1,9 +1,6 @@
 # Azure Identity Insomnia Collections
 A set of Insomnia collections for testing Azure Identity protocols.
 
-[[_TOC_]]
-
-
 ## Download and install Insomnia
 1. Download the Insomnia Windows client at https://insomnia.rest/download
 2. Install Insomnia locally
