@@ -1,0 +1,386 @@
+type: collection.insomnia.rest/5.0
+name: Azure AD B2C Protocol Fundamentals Demo
+meta:
+  id: wrk_58960f7a71a64c53ae2fe0fc0d120e40
+  created: 1745685277781
+  modified: 1745685277781
+collection:
+  - name: Authorization Code Flow
+    meta:
+      id: fld_58aa25972024422ab9ee6a09cc97b825
+      created: 1745684563035
+      modified: 1745689426496
+      sortKey: -1745681401724
+    children:
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize
+        name: Step 1. Get authorization code (copy\paste url to browser)
+        meta:
+          id: req_80a4db75d1234bff81de63a1134ae6a7
+          created: 1745684563036
+          modified: 1745689286107
+          isPrivate: false
+          sortKey: -1745681407209
+        method: GET
+        parameters:
+          - name: p
+            value: "{{policy}}"
+          - name: client_id
+            value: "{{client_id}}"
+          - name: nonce
+            value: defaultNonce
+          - name: redirect_uri
+            value: "{{ _.redirect_uri }}"
+          - name: scope
+            value: "{{scope}}"
+          - name: response_type
+            value: code
+          - name: prompt
+            value: login
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{
+          _.policy }}
+        name: Step 2. Exchange code for tokens
+        meta:
+          id: req_40a59d3df4da4a6db6c9023844dc17ad
+          created: 1745684563038
+          modified: 1745684810995
+          isPrivate: false
+          sortKey: -1745681407109
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_07674f13cfe649d683daaaeb706a96a7
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_1d890cbc65654494ae3f0b48006d3fa9
+            - name: code
+              value: COPYPASTEFROMSTEP1RESULT
+              disabled: false
+              id: pair_8ae0a5e2cc544fce8c803c002f2f8ccd
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_31bdd421760448c581e9c8a8e2169ff8
+            - name: grant_type
+              value: authorization_code
+              disabled: false
+              id: pair_7848161f5c024a15b13776456a94fd6e
+            - name: client_secret
+              value: "{{client_secret}}"
+              disabled: false
+              id: pair_c5419864039b4987afa14975adb8f2be
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{policy}}
+        name: Step 3. Exchange refresh token for another token
+        meta:
+          id: req_ebe46f52277d488192315ddbf46ea5d6
+          created: 1745684563040
+          modified: 1745684827309
+          isPrivate: false
+          sortKey: -1745681407009
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_466ad2b769b449e5bd80635014c31d62
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_23f162c3c25f4f86941d663bf3a0b3a6
+            - name: grant_type
+              value: refresh_token
+              disabled: false
+              id: pair_44a7568022ab4bd3a004cdedf837d84e
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_5e186484f3b44123ad01fb7fd031d361
+            - name: refresh_token
+              value: COPYPASTEFROMSTEP2RESULT
+              disabled: false
+              id: pair_162ad696ec8045ffa79d6547a22125e5
+            - name: client_secret
+              value: "{{client_secret}}"
+              disabled: false
+              id: pair_387783cc42f74af5a47dac01db175ee9
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: b2ccontoso
+      policy: B2C_1_SUSI
+      client_id: f8d80904-009f-4a6b-aea8-e8668b0fe676
+      client_secret: REPLACEME
+      redirect_uri: https://oidcdebugger.com/debug
+      scope: openid offline_access
+        https://b2ccontoso.onmicrosoft.com/7e738b9f-950b-4c75-ade7-a8c6840d1889/demoscope
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - policy
+        - client_id
+        - client_secret
+        - redirect_uri
+        - scope
+  - name: Authorization Code Flow wPKCE
+    meta:
+      id: fld_c307a09acb49490e892a82dbe652eb24
+      created: 1745685378957
+      modified: 1745689450735
+      sortKey: -1745681401711.5
+    children:
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize
+        name: Step 1. Get authorization code (copy\paste url to browser)
+        meta:
+          id: req_fdff4fe1115a4ace8674e82056b27b4c
+          created: 1745685378959
+          modified: 1745689278337
+          isPrivate: false
+          sortKey: -1745681407209
+        method: GET
+        parameters:
+          - name: p
+            value: "{{policy}}"
+          - name: client_id
+            value: "{{client_id}}"
+          - name: nonce
+            value: defaultNonce
+          - name: redirect_uri
+            value: "{{ _.redirect_uri }}"
+          - name: scope
+            value: "{{scope}}"
+          - name: response_type
+            value: code
+          - name: code_challenge
+            value: "{{code_challenge}}"
+          - name: code_challenge_method
+            value: S256
+          - name: prompt
+            value: login
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{
+          _.policy }}
+        name: Step 2. Exchange code for tokens
+        meta:
+          id: req_49d4bcbabdcf4c7fac65d85e14c57af8
+          created: 1745685378960
+          modified: 1745689468413
+          isPrivate: false
+          sortKey: -1745681407109
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_07674f13cfe649d683daaaeb706a96a7
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_1d890cbc65654494ae3f0b48006d3fa9
+            - name: code
+              value: COPYPASTEFROMSTEP1RESULT
+              disabled: false
+              id: pair_8ae0a5e2cc544fce8c803c002f2f8ccd
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_31bdd421760448c581e9c8a8e2169ff8
+            - name: grant_type
+              value: authorization_code
+              disabled: false
+              id: pair_7848161f5c024a15b13776456a94fd6e
+            - name: code_verifier
+              value: "{{code_verifier}}"
+              disabled: false
+              id: pair_c5419864039b4987afa14975adb8f2be
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{policy}}
+        name: Step 3. Exchange refresh token for another token
+        meta:
+          id: req_e6df5fe3fdc343b698f98a8ffba110c5
+          created: 1745685378961
+          modified: 1745689480506
+          isPrivate: false
+          sortKey: -1745681407009
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_466ad2b769b449e5bd80635014c31d62
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_23f162c3c25f4f86941d663bf3a0b3a6
+            - name: grant_type
+              value: refresh_token
+              disabled: false
+              id: pair_44a7568022ab4bd3a004cdedf837d84e
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_5e186484f3b44123ad01fb7fd031d361
+            - name: refresh_token
+              value: COPYPASTEFROMSTEP2RESULT
+              disabled: false
+              id: pair_162ad696ec8045ffa79d6547a22125e5
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: b2ccontoso
+      policy: B2C_1_SUSI
+      client_id: 0e8d3666-bcb2-4f16-9aad-2218bef95f44
+      code_challenge: bFkrswFkRESsoPZP2Cs21M-Jl-F1OLdFGWgjEKdHEcI
+      code_verifier: eyIxIjoxNjgsIjIiOjEyNSwiMyI6NzAsIjQiOjEyMX0
+      redirect_uri: https://oidcdebugger.com/debug
+      scope: openid offline_access
+        https://b2cjafritts.onmicrosoft.com/7e738b9f-950b-4c75-ade7-a8c6840d1889/demoscope
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - policy
+        - client_id
+        - code_challenge
+        - code_verifier
+        - redirect_uri
+        - scope
+  - name: Implicit Flow
+    meta:
+      id: fld_61a7a1a5706d42dab72f36673b30d663
+      created: 1745686473909
+      modified: 1745689529549
+      sortKey: -1745681401699
+    children:
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/{{policy}}oauth2/v2.0/authorize
+        name: Get Token (copy\paste url to browser)
+        meta:
+          id: req_c353bbabee524aeabf0a89a1897cbe53
+          created: 1745687357869
+          modified: 1745689648275
+          isPrivate: false
+          sortKey: -1745687357869
+        method: GET
+        parameters:
+          - name: client_id
+            value: "{{client_id}}"
+          - name: response_type
+            value: id_token
+          - name: redirect_uri
+            value: "{{redirect_uri}}"
+          - name: response_mode
+            value: fragment
+          - name: scope
+            value: "{{scope}}"
+          - name: state
+            value: arbitrary_data_you_can_receive_in_the_response
+          - name: nonce
+            value: "12345"
+          - name: prompt
+            value: login
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: b2ccontoso
+      client_id: 114546e0-11b8-4a95-a499-c2b8166a9f40
+      scope: openid offline_access
+      redirect_uri: https://jwt.ms
+      policy: B2C_1_SUSI
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_a657bd62649944d5979d530bed579925
+    created: 1745684563033
+    modified: 1745689159815
+environments:
+  name: Base Environment
+  meta:
+    id: env_5dca7bf10d2544f38ef1be9696fa1d47
+    created: 1745684563029
+    modified: 1745684563029
+    isPrivate: false
