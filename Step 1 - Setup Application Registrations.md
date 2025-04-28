@@ -1,8 +1,8 @@
 # Step 1 - Setup Application Registrations
 
 ## Pre-requisites
-1. Create your own Azure AD B2C tenant following [Tutorial: Create an Azure Active Directory B2C tenant](https://learn.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-tenant)
-2. Create your own Azure AD B2C sign up and sign in user flow by following [Tutorial: Create user flows and custom policies in Azure Active Directory B2C ](https://learn.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-user-flows?pivots=b2c-user-flow)
+1. Create your own Azure AD B2C tenant following [Tutorial: Create an Azure Active Directory B2C tenant](https://learn.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-tenant) and validate your B2C tenant domain name for example `contosob2c.onmicrosoft.com`
+2. Create your own Azure AD B2C sign up and sign in user flow by following [Tutorial: Create user flows and custom policies in Azure Active Directory B2C ](https://learn.microsoft.com/en-us/azure/active-directory-b2c/tutorial-create-user-flows?pivots=b2c-user-flow) and confirm your policy id for the user flow for example `B2C_1_SUSI`
 
 ## Create your Azure AD B2C application registrations
 To complete this demo you will need to create multiple application registrations in your Azure AD B2C tenant and note their client id's , secrets, etc.
@@ -32,6 +32,9 @@ This application registraiton will reprsent a client app which uses the Authoriz
 13. In your notes you should now have the following saved:
 
    ```
+   B2C domain = contosob2c.onmicrosoft.com
+   B2C user flow policy = B2C_1_SUSI
+
    insomnia_authcode_demo:
    client_id = <client_id from step 9 above>
    client_secret = <secret value from step 12 above>
@@ -56,6 +59,9 @@ This application registration will represent a single page application (SPA) cli
 10. In your notes you should now have the following saved
 
     ```
+    B2C domain = contosob2c.onmicrosoft.com
+    B2C user flow policy = B2C_1_SUSI
+
     insomnia_authcode_demo:
     client_id = <client_id>
     client_secret = <secret value>
@@ -91,6 +97,9 @@ This application registration will represent a client app which uses the Implici
 13. In your notes you should now have the following saved:
 
     ```
+    B2C domain = contosob2c.onmicrosoft.com
+    B2C user flow policy = B2C_1_SUSI
+   
     insomnia_authcode_demo:
     client_id = <client_id>
     client_secret = <secret value>
@@ -131,6 +140,9 @@ This application will represent a web api that uses Oauth2 authorization scopes 
 14. In your notes you should now have the following saved:
 
     ```
+    B2C domain = contosob2c.onmicrosoft.com
+    B2C user flow policy = B2C_1_SUSI
+    
     insomnia_authcode_demo:
     client_id = <client_id>
     client_secret = <secret value>
@@ -168,5 +180,27 @@ In order for your three client apps to be able to request an access token for yo
 
    ![image](https://github.com/user-attachments/assets/5c25319c-d829-416d-b691-152f5b319e60)
 
-10.  Now you will need to follow the same steps 1-9 but for your other two client apps `insomnia_authcodepkce_demo` and `insomnia_implicitflow_demo`
+### 6. Save your notes for future steps
+At the conclusion of this section you should save all the ids / secrets etc. in your notes for future steps.  You should have the following information populated:
+
+    ```
+    B2C domain = contosob2c.onmicrosoft.com
+    B2C user flow policy = B2C_1_SUSI
+    
+    insomnia_authcode_demo:
+    client_id = <client_id>
+    client_secret = <secret value>
+    
+    insomnia_implicitflow_demo:
+    client_id = <client_id>
+
+    insomnia_authcodepkce_demo:
+    client_id = <client_id from step 9 above>
+    
+    insomnia_webapi_demo:
+    client_id = <client_id >
+    demo scope name = <full scope>
+    ```
+
+You can now proceed with the next section for setting up Insomnia and Importing the Azure AD B2C Protocol Demos Insomnia Collection
 
