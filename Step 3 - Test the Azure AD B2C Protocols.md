@@ -4,4 +4,5 @@ Now that you have completed all the previous steps you can use the insomnia coll
 
 You can find my walkthrough presentation of the demo on youtube below:
 
+[![image](https://github.com/user-attachments/assets/64a15046-dd63-499b-b221-ae3d9daf99a5)](https://youtu.be/FMcN3qhAREQ?si=ZwVShR5u6yJ4lmHf)
 
