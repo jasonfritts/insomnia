@@ -147,11 +147,11 @@ This application will represent a web api that uses Oauth2 authorization scopes 
     client_id = <client_id>
     client_secret = <secret value>
     
-    insomnia_implicitflow_demo:
-    client_id = <client_id>
-
     insomnia_authcodepkce_demo:
     client_id = <client_id from step 9 above>
+
+    insomnia_implicitflow_demo:
+    client_id = <client_id>
     
     insomnia_webapi_demo:
     client_id = <client_id from step 9 above>
