@@ -1,4 +1,4 @@
-# Setup Insommnia and Import Azure AD B2C Protocol Demos Insomnia Collections
+# Setup Insomnia and Import Azure AD B2C Protocol Demos Insomnia Collections
 A set of Insomnia collections for testing Azure Identity protocols.
 
 ## Download and install Insomnia
