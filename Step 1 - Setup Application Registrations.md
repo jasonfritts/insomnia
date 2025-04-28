@@ -202,5 +202,5 @@ At the conclusion of this section you should save all the ids / secrets etc. in 
     demo scope name = <full scope>
     ```
 
-You can now proceed with the next section for setting up Insomnia and Importing the Azure AD B2C Protocol Demos Insomnia Collection
+You can now proceed with the next section  [Step 2 - Setup Insomnia and Import Azure AD B2C Protocol Demos Insomnia Collections](https://github.com/jasonfritts/insomnia/blob/main/Step%202%20-%20Setup%20Insomnia%20and%20Import%20Azure%20AD%20B2C%20Protocol%20Demos%20Insomnia%20Collections.md)
 
