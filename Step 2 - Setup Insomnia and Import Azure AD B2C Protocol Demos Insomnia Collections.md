@@ -43,3 +43,4 @@ A set of Insomnia collections for testing Azure Identity protocols.
     ![image](https://github.com/user-attachments/assets/232481c2-a010-45ec-9f41-ba336945844b)
 
 
+You can now proceed with using the demo by following the next step [Step 3 - Test the Azure AD B2C Protocols Demo](https://github.com/jasonfritts/insomnia/blob/main/Step%203%20-%20Test%20the%20Azure%20AD%20B2C%20Protocols.md)
