@@ -311,7 +311,7 @@ collection:
       code_verifier: eyIxIjoxNjgsIjIiOjEyNSwiMyI6NzAsIjQiOjEyMX0
       redirect_uri: https://oidcdebugger.com/debug
       scope: openid offline_access
-        https://b2cjafritts.onmicrosoft.com/7e738b9f-950b-4c75-ade7-a8c6840d1889/demoscope
+        https://b2ccontoso.onmicrosoft.com/7e738b9f-950b-4c75-ade7-a8c6840d1889/demoscope
     environmentPropertyOrder:
       "&":
         - domain
@@ -328,7 +328,7 @@ collection:
       modified: 1745689529549
       sortKey: -1745681401699
     children:
-      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/{{policy}}oauth2/v2.0/authorize
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/{{policy}}/oauth2/v2.0/authorize
         name: Get Token (copy\paste url to browser)
         meta:
           id: req_c353bbabee524aeabf0a89a1897cbe53
