@@ -326,7 +326,7 @@ collection:
           - name: client_id
             value: "{{client_id}}"
           - name: response_type
-            value: id_token
+            value: token
           - name: redirect_uri
             value: "{{redirect_uri}}"
           - name: response_mode
