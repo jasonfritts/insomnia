@@ -24,6 +24,7 @@ A set of Insomnia collections for testing Azure Identity protocols.
    | Example Name | URL |
    | --- | --- |
    | **Azure AD B2C Protocol Fundamentals** | ```https://raw.githubusercontent.com/jasonfritts/insomnia/refs/heads/main/B2C%20Protocols%20Demo.yaml``` |
+   | **Entra External ID CIAM Protocol Fundamentals** | '''https://raw.githubusercontent.com/jasonfritts/insomnia/refs/heads/main/Entra%20External%20ID%20CIAM%20Protocols%20Demo.yaml'''|
 
 
 
