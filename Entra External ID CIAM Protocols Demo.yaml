@@ -1,0 +1,376 @@
+type: collection.insomnia.rest/5.0
+name: Entra External ID CIAM Protocol Fundamentals Demo
+meta:
+  id: wrk_5f9290228a6646659ac57ba8c9fd8972
+  created: 1745941575266
+  modified: 1745941575266
+collection:
+  - name: Authorization Code Flow
+    meta:
+      id: fld_980d1a83e25e46508b389b31ffe870f4
+      created: 1745941575282
+      modified: 1745944211684
+      sortKey: -1745681401724
+    children:
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize
+        name: Step 1. Get authorization code (copy\paste url to browser)
+        meta:
+          id: req_5f0e273b87a64d699f7663bb2633b430
+          created: 1745941575285
+          modified: 1745943838971
+          isPrivate: false
+          sortKey: -1745681407209
+        method: GET
+        parameters:
+          - name: client_id
+            value: "{{client_id}}"
+          - name: nonce
+            value: defaultNonce
+          - name: redirect_uri
+            value: "{{ _.redirect_uri }}"
+          - name: scope
+            value: "{{scope}}"
+          - name: response_type
+            value: code
+          - name: prompt
+            value: login
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token
+        name: Step 2. Exchange code for tokens
+        meta:
+          id: req_46b1c5284de84689a427a2bd7922a712
+          created: 1745941575287
+          modified: 1745944311457
+          isPrivate: false
+          sortKey: -1745681407109
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_07674f13cfe649d683daaaeb706a96a7
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_1d890cbc65654494ae3f0b48006d3fa9
+            - name: code
+              value: REPLACEWITHCODEFROMSTEP1
+              disabled: false
+              id: pair_8ae0a5e2cc544fce8c803c002f2f8ccd
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_31bdd421760448c581e9c8a8e2169ff8
+            - name: grant_type
+              value: authorization_code
+              disabled: false
+              id: pair_7848161f5c024a15b13776456a94fd6e
+            - name: client_secret
+              value: "{{client_secret}}"
+              disabled: false
+              id: pair_c5419864039b4987afa14975adb8f2be
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token
+        name: Step 3. Exchange refresh token for another token
+        meta:
+          id: req_ee22c7892bad42a4ae4594b2c1dced7b
+          created: 1745941575290
+          modified: 1745944301431
+          isPrivate: false
+          sortKey: -1745681407009
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_466ad2b769b449e5bd80635014c31d62
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_23f162c3c25f4f86941d663bf3a0b3a6
+            - name: grant_type
+              value: refresh_token
+              disabled: false
+              id: pair_44a7568022ab4bd3a004cdedf837d84e
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_5e186484f3b44123ad01fb7fd031d361
+            - name: refresh_token
+              value: REPLACEWITHTOKENFROMSTEP2
+              disabled: false
+              id: pair_162ad696ec8045ffa79d6547a22125e5
+            - name: client_secret
+              value: "{{client_secret}}"
+              disabled: false
+              id: pair_387783cc42f74af5a47dac01db175ee9
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: ciamcontoso
+      client_id: 374b0c30-2c9b-4785-ac00-f6dad997c5c7
+      client_secret: REPLACEME
+      redirect_uri: https://oidcdebugger.com/debug
+      scope: openid offline_access
+        api://3c4b21d4-6118-4d8a-9ffa-f0c496938955/demoscope
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - client_id
+        - client_secret
+        - redirect_uri
+        - scope
+  - name: Authorization Code Flow wPKCE
+    meta:
+      id: fld_9bf3c361cfca4ec4a214b9533d477bbd
+      created: 1745941575293
+      modified: 1745944226303
+      sortKey: -1745681401711.5
+    children:
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize?client_id={{client_id}}&nonce=mAZutJeHsW&redirect_uri={{redirect_uri}}&scope={{scope}}&response_type=code&prompt=login&code_challenge_method=S256&code_challenge={{code_challenge}}
+        name: Step 1. Get authorization code (copy\paste url to browser)
+        meta:
+          id: req_bf791239ffc443aca5e7a668e05fbd49
+          created: 1745941575295
+          modified: 1745942450631
+          isPrivate: false
+          sortKey: -1745681407209
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token
+        name: Step 2. Exchange code for tokens
+        meta:
+          id: req_8bb0515798a64d019df23bfe7d0555f1
+          created: 1745941575297
+          modified: 1745944277816
+          isPrivate: false
+          sortKey: -1745681407109
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_07674f13cfe649d683daaaeb706a96a7
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_1d890cbc65654494ae3f0b48006d3fa9
+            - name: code
+              value: REPLACEWITHCODEFROMSTEP1
+              disabled: false
+              id: pair_8ae0a5e2cc544fce8c803c002f2f8ccd
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_31bdd421760448c581e9c8a8e2169ff8
+            - name: grant_type
+              value: authorization_code
+              disabled: false
+              id: pair_7848161f5c024a15b13776456a94fd6e
+            - name: code_verifier
+              value: "{{code_verifier}}"
+              disabled: false
+              id: pair_c5419864039b4987afa14975adb8f2be
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+            id: pair_7095bfb00c7c4159b4cb8055864b0eed
+          - name: User-Agent
+            value: insomnia/11.0.2
+            id: pair_d9cb690a7d2b473a9d6d5d8d4b2dce70
+          - id: pair_52bab47a6b6345ddb31534fb59175c70
+            name: Origin
+            value: https://oidcdebugger.com
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token
+        name: Step 3. Exchange refresh token for another token
+        meta:
+          id: req_14aa7118e4ac430b8ea9e48e3c0446f7
+          created: 1745941575301
+          modified: 1745944260274
+          isPrivate: false
+          sortKey: -1745681407009
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: client_id
+              value: "{{client_id}}"
+              disabled: false
+              id: pair_466ad2b769b449e5bd80635014c31d62
+            - name: scope
+              value: "{{scope}}"
+              disabled: false
+              id: pair_23f162c3c25f4f86941d663bf3a0b3a6
+            - name: grant_type
+              value: refresh_token
+              disabled: false
+              id: pair_44a7568022ab4bd3a004cdedf837d84e
+            - name: redirect_uri
+              value: "{{redirect_uri}}"
+              disabled: false
+              id: pair_5e186484f3b44123ad01fb7fd031d361
+            - name: refresh_token
+              value: REPLACEWITHTOKENFROMSTEP2
+              disabled: false
+              id: pair_162ad696ec8045ffa79d6547a22125e5
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+            id: pair_ecf0bf103ed3443dba67234eb95a2bc5
+          - name: User-Agent
+            value: insomnia/11.0.2
+            id: pair_d7327ba063ca4fc38c3401e31295a555
+          - id: pair_18de0c83fec64b32bd1d51cc97f02c77
+            name: Origin
+            value: https://oidcdebugger.com
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: ciamcontoso
+      client_id: d8ec69f2-270d-41ba-a39c-9493f06cc36d
+      code_challenge: IyDGhB7bYnVI78zcdrfn7TgMfJsiWRlUDVyJ8fqLYxk
+      code_verifier: WJzr-BZRax147fXVkTbntV1TT58ZZ0vGdwKfow9mYPY2bdcn_Qq5PmAwM6DOnwg8
+      redirect_uri: https://oidcdebugger.com/debug
+      scope: openid offline_access
+        api://3c4b21d4-6118-4d8a-9ffa-f0c496938955/demoscope
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - client_id
+        - code_challenge
+        - code_verifier
+        - redirect_uri
+        - scope
+  - name: Implicit Flow
+    meta:
+      id: fld_45b05decf5c14945a5daed692dcdc0df
+      created: 1745941575304
+      modified: 1745944075502
+      sortKey: -1745681401699
+    children:
+      - url: https://{{domain}}.ciamlogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize
+        name: Get Token (copy\paste url to browser)
+        meta:
+          id: req_523218acf9824c8faa395d16edb69d39
+          created: 1745941575306
+          modified: 1745944021800
+          isPrivate: false
+          sortKey: -1745687357869
+        method: GET
+        parameters:
+          - name: client_id
+            value: "{{client_id}}"
+          - name: response_type
+            value: id_token
+          - name: redirect_uri
+            value: "{{redirect_uri}}"
+          - name: response_mode
+            value: fragment
+          - name: scope
+            value: "{{scope}}"
+          - name: state
+            value: arbitrary_data_you_can_receive_in_the_response
+          - name: nonce
+            value: "12345"
+          - name: prompt
+            value: login
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: ciamjafritts
+      client_id: 820bec56-b48c-4223-aa02-621f47f4e3bd
+      scope: openid offline_access
+      redirect_uri: https://jwt.ms
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - client_id
+        - scope
+        - redirect_uri
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_9b417beed1bf48579023609ba4cc6bda
+    created: 1745941575280
+    modified: 1745943933269
+environments:
+  name: Base Environment
+  meta:
+    id: env_c1b69f55784c4137b5215cf01d00190e
+    created: 1745941575274
+    modified: 1745941575274
+    isPrivate: false
