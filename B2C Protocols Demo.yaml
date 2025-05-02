@@ -1,21 +1,21 @@
 type: collection.insomnia.rest/5.0
 name: Azure AD B2C Protocol Fundamentals Demo
 meta:
-  id: wrk_58960f7a71a64c53ae2fe0fc0d120e40
-  created: 1745685277781
-  modified: 1745685277781
+  id: wrk_90bac441d91941f38740e2b1862bc526
+  created: 1746208851618
+  modified: 1746208851618
 collection:
   - name: Authorization Code Flow
     meta:
-      id: fld_58aa25972024422ab9ee6a09cc97b825
+      id: fld_ea1f3a713b7a48ec80e2a35e10e86587
       created: 1745684563035
-      modified: 1745689426496
-      sortKey: -1745681401724
+      modified: 1746209703409
+      sortKey: -1746209700554
     children:
       - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize
         name: Step 1. Get authorization code (copy\paste url to browser)
         meta:
-          id: req_80a4db75d1234bff81de63a1134ae6a7
+          id: req_6f61d78b5bda41e9b24c7d862ba13ad8
           created: 1745684563036
           modified: 1745689286107
           isPrivate: false
@@ -51,7 +51,7 @@ collection:
           _.policy }}
         name: Step 2. Exchange code for tokens
         meta:
-          id: req_40a59d3df4da4a6db6c9023844dc17ad
+          id: req_aaba37b0bfe14bacb51a96f9f1eb455e
           created: 1745684563038
           modified: 1745684810995
           isPrivate: false
@@ -100,7 +100,7 @@ collection:
       - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{policy}}
         name: Step 3. Exchange refresh token for another token
         meta:
-          id: req_ebe46f52277d488192315ddbf46ea5d6
+          id: req_54d7e538928a4e708af5dca49dba64dd
           created: 1745684563040
           modified: 1745684827309
           isPrivate: false
@@ -164,15 +164,15 @@ collection:
         - scope
   - name: Authorization Code Flow wPKCE
     meta:
-      id: fld_c307a09acb49490e892a82dbe652eb24
+      id: fld_b399d34354c346208170207fef907ce7
       created: 1745685378957
-      modified: 1745689450735
-      sortKey: -1745681401711.5
+      modified: 1746209704991
+      sortKey: -1746209700504
     children:
       - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/authorize
         name: Step 1. Get authorization code (copy\paste url to browser)
         meta:
-          id: req_fdff4fe1115a4ace8674e82056b27b4c
+          id: req_1780edb9dbff44868b0d40676d304b02
           created: 1745685378959
           modified: 1745689278337
           isPrivate: false
@@ -212,7 +212,7 @@ collection:
           _.policy }}
         name: Step 2. Exchange code for tokens
         meta:
-          id: req_49d4bcbabdcf4c7fac65d85e14c57af8
+          id: req_6e765f9289854dd2bb0f08b551f31e03
           created: 1745685378960
           modified: 1745689468413
           isPrivate: false
@@ -261,7 +261,7 @@ collection:
       - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{policy}}
         name: Step 3. Exchange refresh token for another token
         meta:
-          id: req_e6df5fe3fdc343b698f98a8ffba110c5
+          id: req_38d37dd968194776ad3502c3dbffdee4
           created: 1745685378961
           modified: 1745689480506
           isPrivate: false
@@ -323,15 +323,15 @@ collection:
         - scope
   - name: Implicit Flow
     meta:
-      id: fld_61a7a1a5706d42dab72f36673b30d663
+      id: fld_8cc65886b1b54f838e5e85356e2cc95a
       created: 1745686473909
-      modified: 1745689529549
-      sortKey: -1745681401699
+      modified: 1746209708217
+      sortKey: -1746209700479
     children:
       - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/{{policy}}/oauth2/v2.0/authorize
         name: Get Token (copy\paste url to browser)
         meta:
-          id: req_c353bbabee524aeabf0a89a1897cbe53
+          id: req_af0e1b8b4c9a446fb615845869c21434
           created: 1745687357869
           modified: 1745689648275
           isPrivate: false
@@ -371,16 +371,147 @@ collection:
       scope: openid offline_access
       redirect_uri: https://jwt.ms
       policy: B2C_1_SUSI
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - client_id
+        - scope
+        - redirect_uri
+        - policy
+  - name: Client Credentials Flow
+    meta:
+      id: fld_2c7192a6d40845aa881a450056cafcec
+      created: 1746208875064
+      modified: 1746210331134
+      sortKey: -1746209700466.5
+    children:
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token
+        name: Step 1. Get token
+        meta:
+          id: req_70020541fd1e43769b8fb0ef15adfb07
+          created: 1746209364643
+          modified: 1746210296733
+          isPrivate: false
+          sortKey: -1746209364643
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: grant_type
+              value: client_credentials
+              id: pair_ed985f08617048afbcf637c408af2f42
+            - name: client_id
+              value: "{{client_id}}"
+              id: pair_bec7e9b250034792a30d0386aee6b091
+            - name: client_secret
+              value: "{{client_secret}}"
+              id: pair_e5188823526a40479ed750f2f81c7809
+            - name: scope
+              value: "{{scope}}"
+              id: pair_71aed5d785d3410db50cdafce1afc8cd
+        parameters:
+          - name: p
+            value: "{{policy}}"
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: b2ccontoso
+      policy: B2C_1_SUSI
+      client_id: 7bbabd28-319d-4e58-bdae-ea1eb4eda65d
+      client_secret: REPLACEME
+      scope: https://b2ccontoso.onmicrosoft.com/cd70125b-c277-47eb-b9dd-037b7a318e76/.default
+  - name: ROPC Flow
+    meta:
+      id: fld_3dde39b78abc4e349018128b82048a5b
+      created: 1746209700454
+      modified: 1746216485088
+      sortKey: -1746209700454
+    children:
+      - url: https://{{domain}}.b2clogin.com/{{domain}}.onmicrosoft.com/oauth2/v2.0/token?p={{policy}}
+        name: Step 1. Get token
+        meta:
+          id: req_b793ca0468d445bebee6edcce4a799bb
+          created: 1746210001875
+          modified: 1746211223025
+          isPrivate: false
+          sortKey: -1746210001875
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - id: pair_9b666ddf48644777a8f2d2798f79872c
+              name: username
+              value: "{{username}}"
+              disabled: false
+            - id: pair_f4f2d4350ee540a884614d6fd581d4b0
+              name: password
+              value: "{{password}}"
+              disabled: false
+            - id: pair_6cc4222cba314f2996ff9456792b4c81
+              name: grant_type
+              value: password
+              disabled: false
+            - id: pair_b4f0c9a185af4069b88468c7bbbf0f52
+              name: client_id
+              value: "{{client_id}}"
+              disabled: false
+            - id: pair_b9e940723d7b451393cd6c7ca4518b36
+              name: scope
+              value: "{{scope}}"
+              disabled: false
+            - id: pair_ac4fd9579e064d379b7c54ebfdd412e6
+              name: response_type
+              value: token id_token
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      domain: b2ccontoso
+      policy: B2C_1_ROPC
+      client_id: 57c10437-c13a-41b9-b7fc-f9fb22ab77b0
+      username: user@contoso.com
+      password: REPLACEME
+      scope: openid 57c10437-c13a-41b9-b7fc-f9fb22ab77b0 offline_access
+    environmentPropertyOrder:
+      "&":
+        - domain
+        - policy
+        - client_id
+        - username
+        - password
+        - scope
 cookieJar:
   name: Default Jar
   meta:
-    id: jar_a657bd62649944d5979d530bed579925
+    id: jar_49e5604abcec40de9d8d704ee0434cce
     created: 1745684563033
-    modified: 1745689159815
+    modified: 1746216422560
 environments:
   name: Base Environment
   meta:
-    id: env_5dca7bf10d2544f38ef1be9696fa1d47
+    id: env_fe11195f2d4e4e6d9d7efb8f03daf80d
     created: 1745684563029
     modified: 1745684563029
     isPrivate: false
